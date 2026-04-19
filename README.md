@@ -27,7 +27,3 @@ You can use the systems provided by ZanJhat Core to:
 ## Compatibility
 
 Designed for mods that depend on ZanJhat Core and other compatible mod projects.
-
-## Author
-
-ZanJhat
