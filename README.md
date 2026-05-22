@@ -10,6 +10,9 @@ A core library that provides shared systems such as settings management, UI widg
 - Shared utilities & helpers
 - Mod compatibility tools
 - Dependency base for ZanJhat ecosystem
+- Custom Command System
+- Creature Effect Component System
+- Double-Tap Dash Mechanic for Players
 
 ---
 
