@@ -23,7 +23,7 @@ A core library that provides shared systems such as settings management, UI widg
 ---
 
 ## Usage
-ZanJhat Core is required by other ZanJhat mods such as ZanJhat Map.
+ZanJhat Core is required by other ZanJhat mods such as ZanJhat Map, ZanJhat HUD.
 
 ---
 
