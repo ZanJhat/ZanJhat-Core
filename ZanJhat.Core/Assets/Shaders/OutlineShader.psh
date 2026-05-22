@@ -1,0 +1,28 @@
+#version 320 es
+
+// <Sampler Name='u_sampler' Texture='u_texture' />
+precision mediump float;
+
+uniform vec4 u_outlineColor;
+uniform sampler2D u_texture;
+uniform float u_useTexture;
+
+in vec2 v_texcoord;
+out vec4 fragColor;
+
+void main()
+{
+    // Nếu Model này có dùng Texture (Áo giáp, mũ, da người...)
+    if (u_useTexture > 0.5) 
+    {
+        vec4 texColor = texture(u_texture, v_texcoord);
+        
+        // Nếu Pixel này bị rỗng (Độ đục Alpha < 0.1) -> Bỏ qua không vẽ viền!
+        if (texColor.a < 0.1) 
+        {
+            discard;
+        }
+    }
+    
+    fragColor = u_outlineColor;
+}
