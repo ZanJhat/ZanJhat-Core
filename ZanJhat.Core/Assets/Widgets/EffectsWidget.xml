@@ -1,0 +1,31 @@
+<EffectsWidget xmlns="runtime-namespace:Game" xmlns:zc="runtime-namespace:ZanJhat.Core">
+
+    <CanvasWidget Size="614, 382" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+        <RectangleWidget FillColor="198, 198, 198" OutlineColor="100, 100, 100" OutlineThickness="4" />
+
+        <StackPanelWidget Direction="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0, 5">
+
+            <StackPanelWidget Direction="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <CanvasWidget Size="614, 40" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <zc:RainbowLabelWidget Name="Title" Text="Effects" Margin="5, 5" HorizontalAlignment="Center" />
+                </CanvasWidget>
+            </StackPanelWidget>
+
+            <CanvasWidget Size="594, 302" Margin="20, 3">
+
+                <RectangleWidget FillColor="100, 100, 100" OutlineColor="155, 155, 155" OutlineThickness="4" />
+
+                <ScrollPanelWidget Name="ScrollPanel" Direction="Vertical" Margin="3, 3" ClampToBounds="true">
+                    <StackPanelWidget Name="EffectsPanel" Direction="Vertical" HorizontalAlignment="Center" Margin="10, 10" />
+                </ScrollPanelWidget>
+
+            </CanvasWidget>
+
+            <CanvasWidget Size="0, 20" />
+
+        </StackPanelWidget>
+
+    </CanvasWidget>
+
+</EffectsWidget>
