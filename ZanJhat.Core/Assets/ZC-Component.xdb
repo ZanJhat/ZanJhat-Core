@@ -1,5 +1,0 @@
-<ZanJhatCore>
-    <ComponentTemplate Name="Effect" Guid="cccccccc-0000-0000-0001-000000000000" InheritanceParent="b05700ed-7e4e-4679-98f5-b597f421496b">
-        <Parameter Name="Class" Guid="cccccccc-0000-0000-0001-000000000001" Value="ZanJhat.Core.ComponentEffect" Type="string" />
-    </ComponentTemplate>
-</ZanJhatCore>

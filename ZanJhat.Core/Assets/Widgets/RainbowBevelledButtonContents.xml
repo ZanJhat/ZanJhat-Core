@@ -1,9 +1,0 @@
-<RainbowBevelledButtonWidget xmlns="runtime-namespace:Game" xmlns:zc="runtime-namespace:ZanJhat.Core">
-  <CanvasWidget Name="BevelledButton.Canvas" Margin="6, 6">
-    <zc:RainbowBevelledRectangleWidget Name="BevelledButton.Rectangle" />
-    <RectangleWidget Name="BevelledButton.Image" IsVisible="false" />
-    <zc:RainbowLabelWidget Name="BevelledButton.Label" HorizontalAlignment="Center" VerticalAlignment="Center" />
-    <ClickableWidget Name="BevelledButton.Clickable" SoundName="Audio/UI/ButtonClick" />
-  </CanvasWidget>
-</RainbowBevelledButtonWidget>
- 
