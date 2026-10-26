@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <AssemblyName>ZanJhatCore</AssemblyName>
+    <RootNamespace>ZanJhat.Core</RootNamespace>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Version>3.0.0</Version>
+    <ApplicationId>com.companyname.zanjhatcore</ApplicationId>
+    <ApplicationTitle>ZanJhatCore</ApplicationTitle>
+    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+    <ApplicationVersion>1</ApplicationVersion>
+    <RuntimeIdentifiers>android-arm64</RuntimeIdentifiers>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Engine">
+      <HintPath>/storage/emulated/0/Download/.SC2-Mod 🔰/References/API/SC2 v2.4 API 1.9.5.1/Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="EntitySystem">
+      <HintPath>/storage/emulated/0/Download/.SC2-Mod 🔰/References/API/SC2 v2.4 API 1.9.5.1/EntitySystem.dll</HintPath>
+    </Reference>
+    <Reference Include="Survivalcraft">
+      <HintPath>/storage/emulated/0/Download/.SC2-Mod 🔰/References/API/SC2 v2.4 API 1.9.5.1/Survivalcraft.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>
