@@ -1,4 +1,4 @@
-﻿using Engine;
+using Engine;
 using Engine.Graphics;
 using Engine.Media;
 using Engine.Serialization;
@@ -19,7 +19,7 @@ namespace ZanJhat.Core
     public class ExportCommand : Command
     {
         public override string Name => "export";
-        public override string Usage => "/export <blocks>";
+        public override string Usage => "/export <blocks/furniture>";
 
         public ExportCommand()
         {
@@ -27,4 +27,5 @@ namespace ZanJhat.Core
             Register(new ExportFurnitureCommand());
         }
     }
+
 }

@@ -43,7 +43,7 @@ namespace ZanJhat.Core
             else
             {
                 subsystemConsole.AddMessage(null, MessageType.Error, "System", $"Blocks export failed: {result.Error}");
-            return false;
+                return false;
             }
         }
     }
