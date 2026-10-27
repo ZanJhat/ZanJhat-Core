@@ -1,7 +1,17 @@
-using System;
-using System.Linq;
-using System.Collections.Generic;
 using Engine;
+using Engine.Graphics;
+using Engine.Media;
+using Engine.Serialization;
+using GameEntitySystem;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Xml.Linq;
+using TemplatesDatabase;
+using System.IO;
+using System.Text;
+using XmlUtilities;
 using Game;
 
 namespace ZanJhat.Core
@@ -66,6 +76,18 @@ namespace ZanJhat.Core
                 /*subsystemConsole.AddMessage(null, MessageType.Error, "System", $"Unknown subcommand");
                 subsystemConsole.AddMessage(null, MessageType.Info, "System", $"Usage: {Usage}");
                 return false;*/
+
+                if (rawArgs.Length == 0 && Arguments.Length == 0)
+                {
+                    subsystemConsole.AddMessage(null, MessageType.Info, "System", $"Usage: {Usage}");
+
+                    foreach (Command childCommand in m_children.Values)
+                    {
+                        subsystemConsole.AddMessage(null, MessageType.Info, "System", childCommand.Usage);
+                    }
+
+                    return false;
+                }
             }
 
             // 2. NORMAL COMMAND (no child)
@@ -80,7 +102,7 @@ namespace ZanJhat.Core
             return ExecuteCore(subsystemConsole, executor, args);
         }
 
-        protected virtual bool ExecuteCore(SubsystemConsole subsystemConsole, ComponentConsole executor, object[] args) 
+        protected virtual bool ExecuteCore(SubsystemConsole subsystemConsole, ComponentConsole executor, object[] args)
         {
             return true;
         }
