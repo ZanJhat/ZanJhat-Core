@@ -25,17 +25,18 @@ namespace ZanJhat.Core
         public SubsystemAudio m_subsystemAudio;
 
         // Hook Event
-        public static event Action<DamageItemContext> OnDamageItem;
+        public static event Action<ItemBreakContext> OnItemBreak;
 
         public override void __ModInitialize()
         {
             ModsManager.RegisterHook("OnProjectLoaded", this);
+            ModsManager.RegisterHook("SaveSettings", this);
+            ModsManager.RegisterHook("LoadSettings", this);
             ModsManager.RegisterHook("OnCameraListInit", this);
             ModsManager.RegisterHook("ManageCameras", this);
             ModsManager.RegisterHook("DamageItem", this);
             ModsManager.RegisterHook("RecalculateCameraProjection", this);
             ModsManager.RegisterHook("AfterWidgetUpdate", this);
-            ModsManager.RegisterHook("OnSettingsScreenCreated", this);
             ModsManager.RegisterHook("OnLoadingFinished", this);
         }
 
@@ -44,6 +45,22 @@ namespace ZanJhat.Core
             m_subsystemGameInfo = project.FindSubsystem<SubsystemGameInfo>(true);
             m_subsystemTime = project.FindSubsystem<SubsystemTime>(true);
             m_subsystemAudio = project.FindSubsystem<SubsystemAudio>(true);
+        }
+
+        public override void SaveSettings(XElement xElement)
+        {
+            if (xElement == null)
+                return;
+
+            XmlUtils.SetAttributeValue(xElement, "DevMode", CoreSettingsManager.DevMode);
+        }
+
+        public override void LoadSettings(XElement xElement)
+        {
+            if (xElement == null)
+                return;
+
+            CoreSettingsManager.DevMode = XmlUtils.GetAttributeValue(xElement, "DevMode", false);
         }
 
         public override IEnumerable<KeyValuePair<string, int>> GetCameraList()
@@ -71,18 +88,18 @@ namespace ZanJhat.Core
                     ComponentMiner componentMiner = owner?.FindComponent<ComponentMiner>();
                     Vector3? position = componentMiner?.ComponentCreature?.ComponentBody?.Position;
 
-                    DamageItemContext ctx = new DamageItemContext
+                    ItemBreakContext ctx = new ItemBreakContext
                     {
                         Block = block,
                         Value = value,
                         DamageCount = damageCount,
                         Owner = owner,
                         Position = position,
-                        PlaySound = CoreSettingsManager.AudioSettings.DamageItem,
+                        PlaySound = CoreSettingsManager.AudioSettings.BreakSound,
                         SoundPath = "Audio/Break"
                     };
 
-                    OnDamageItem?.Invoke(ctx);
+                    OnItemBreak?.Invoke(ctx);
 
                     if (ctx.PlaySound)
                     {
@@ -119,35 +136,8 @@ namespace ZanJhat.Core
 
         public override void AfterWidgetUpdate(Widget widget)
         {
-            if (widget == null) return;
-        }
-
-        public override void OnSettingsScreenCreated(SettingsScreen settingsScreen, out Dictionary<ButtonWidget, Action> buttonsToAdd)
-        {
-            buttonsToAdd = [];
-
-            if (settingsScreen.Children.Find<ButtonWidget>("CoreSettings", false) == null)
-            {
-                // RainbowBevelledButtonWidget
-                BevelledButtonWidget coreSettingsButton = new BevelledButtonWidget
-                {
-                    Name = "CoreSettings",
-                    Text = "Core Settings",
-                    Style = ContentManager.Get<XElement>("Styles/ButtonStyle_310x60"),
-                    HorizontalAlignment = WidgetAlignment.Center,
-                    VerticalAlignment = WidgetAlignment.Center,
-                    Margin = new Vector2(0f, 5f),
-                    BevelColor = Color.SkyBlue,
-                    CenterColor = Color.SkyBlue //new Color(181, 172, 154, 128)
-                };
-
-                Action action = () =>
-                {
-                    ScreensManager.SwitchScreen("CoreSettings");
-                };
-
-                buttonsToAdd.Add(coreSettingsButton, action);
-            }
+            if (widget == null)
+                return;
         }
 
         public override void OnLoadingFinished(List<Action> actions)
@@ -165,7 +155,6 @@ namespace ZanJhat.Core
                 CommandManager.Initialize();
 
                 // 4. UI
-                ScreensManager.AddScreen("CoreSettings", new CoreSettingsScreen());
             });
         }
     }

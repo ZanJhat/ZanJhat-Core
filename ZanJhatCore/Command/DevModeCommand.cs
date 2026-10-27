@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Collections.Generic;
 using Engine;
 using Game;
+using ZanJhat.Core;
 
 namespace ZanJhat.Core
 {
@@ -16,21 +17,13 @@ namespace ZanJhat.Core
             new CmdArgument("enable", CmdArgType.Bool)
         };
 
-        protected override void ExecuteCore(SubsystemConsole subsystemConsole, ComponentConsole executor, object[] args)
+        protected override bool ExecuteCore(SubsystemConsole subsystemConsole, ComponentConsole executor, object[] args)
         {
             bool enable = (bool)args[0];
 
-            CoreSettings coreSettings = CoreSettingsManager.Get<CoreSettings>();
-
-            if (coreSettings == null)
-            {
-                subsystemConsole.AddMessage(null, MessageType.Error, "System", "ZJCoreSettings is Null");
-                return;
-            }
-
-            coreSettings.DevMode = enable;
-
-            subsystemConsole.AddMessage(null, MessageType.Info, "System", $"Dev mode: {coreSettings.DevMode}");
+            CoreSettingsManager.DevMode = enable;
+            subsystemConsole.AddMessage(null, MessageType.Info, "System", $"Dev mode: {CoreSettingsManager.DevMode}");
+            return true;
         }
     }
 }

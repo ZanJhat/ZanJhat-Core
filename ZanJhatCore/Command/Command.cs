@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Collections.Generic;
 using Engine;
@@ -35,12 +35,11 @@ namespace ZanJhat.Core
 
     public abstract class Command
     {
-        private Dictionary<string, Command> m_children = new();
-
         public abstract string Name { get; }
         public abstract string Usage { get; }
 
         protected virtual CmdArgument[] Arguments => Array.Empty<CmdArgument>();
+        private Dictionary<string, Command> m_children = new();
 
         protected Game.Random m_random = new();
 
@@ -54,21 +53,19 @@ namespace ZanJhat.Core
             return m_children.TryGetValue(name, out cmd);
         }
 
-        public virtual void Execute(SubsystemConsole subsystemConsole, ComponentConsole executor, string[] rawArgs)
+        public virtual bool Execute(SubsystemConsole subsystemConsole, ComponentConsole executor, string[] rawArgs)
         {
             // 1. CHILD ROUTING
             if (m_children.Count > 0)
             {
                 if (rawArgs.Length > 0 && TryGetChild(rawArgs[0], out Command child))
                 {
-                    child.Execute(subsystemConsole, executor, rawArgs.Skip(1).ToArray());
-                    return;
+                    return child.Execute(subsystemConsole, executor, rawArgs.Skip(1).ToArray());
                 }
 
-                subsystemConsole.AddMessage(null, MessageType.Error, "System", $"Unknown subcommand");
+                /*subsystemConsole.AddMessage(null, MessageType.Error, "System", $"Unknown subcommand");
                 subsystemConsole.AddMessage(null, MessageType.Info, "System", $"Usage: {Usage}");
-
-                return;
+                return false;*/
             }
 
             // 2. NORMAL COMMAND (no child)
@@ -76,15 +73,16 @@ namespace ZanJhat.Core
             {
                 subsystemConsole.AddMessage(null, MessageType.Error, "System", error);
                 subsystemConsole.AddMessage(null, MessageType.Info, "System", $"Usage: {Usage}");
-                return;
+                return false;
             }
 
             // 3. EXECUTE CORE
-            ExecuteCore(subsystemConsole, executor, args);
+            return ExecuteCore(subsystemConsole, executor, args);
         }
 
-        protected virtual void ExecuteCore(SubsystemConsole subsystemConsole, ComponentConsole executor, object[] args)
+        protected virtual bool ExecuteCore(SubsystemConsole subsystemConsole, ComponentConsole executor, object[] args) 
         {
+            return true;
         }
 
         protected bool TryParseArguments(SubsystemConsole subsystemConsole, ComponentConsole executor, CmdArgument[] expected, string[] rawArgs, out object[] args, out string error)

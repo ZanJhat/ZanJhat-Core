@@ -2,16 +2,17 @@
 using Engine.Graphics;
 using Engine.Media;
 using Engine.Serialization;
-using GameEntitySystem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Xml.Linq;
-using TemplatesDatabase;
+using System.ComponentModel;
 using System.IO;
 using System.Text;
 using XmlUtilities;
+using GameEntitySystem;
+using TemplatesDatabase;
 using Game;
 
 namespace ZanJhat.Core

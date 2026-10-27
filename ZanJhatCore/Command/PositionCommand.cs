@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Collections.Generic;
 using Engine;
@@ -11,14 +11,14 @@ namespace ZanJhat.Core
         public override string Name => "position";
         public override string Usage => "/position";
 
-        protected override void ExecuteCore(SubsystemConsole subsystemConsole, ComponentConsole executor, object[] args)
+        protected override bool ExecuteCore(SubsystemConsole subsystemConsole, ComponentConsole executor, object[] args)
         {
             ComponentBody componentBody = executor.Entity.FindComponent<ComponentBody>();
 
             if (componentBody == null)
             {
                 subsystemConsole.AddMessage(null, MessageType.Error, "System", "ComponentBody is null");
-                return;
+                return false;
             }
 
             Vector3 position = componentBody.Position;
@@ -27,6 +27,7 @@ namespace ZanJhat.Core
             string z = position.Z.ToString("0.0");
 
             subsystemConsole.AddMessage(null, MessageType.Info, "System", $"Position: {x}, {y}, {z}");
+            return true;
         }
     }
 }

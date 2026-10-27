@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Collections.Generic;
 using Engine;
@@ -16,14 +16,14 @@ namespace ZanJhat.Core
             new CmdArgument("count", CmdArgType.Int)
         };
 
-        protected override void ExecuteCore(SubsystemConsole subsystemConsole, ComponentConsole executor, object[] args)
+        protected override bool ExecuteCore(SubsystemConsole subsystemConsole, ComponentConsole executor, object[] args)
         {
             ComponentMiner componentMiner = executor.Entity.FindComponent<ComponentMiner>();
 
             if (componentMiner == null)
             {
                 subsystemConsole.AddMessage(null, MessageType.Error, "System", "ComponentMiner is null");
-                return;
+                return false;
             }
 
             int damageCount = (int)args[0];
@@ -35,7 +35,7 @@ namespace ZanJhat.Core
             if (inventory == null)
             {
                 subsystemConsole.AddMessage(null, MessageType.Error, "System", "IInventory is null");
-                return;
+                return false;
             }
 
             int activeSlotIndex = inventory.ActiveSlotIndex;
@@ -48,6 +48,7 @@ namespace ZanJhat.Core
             int durability = block.GetDurability(value);
 
             subsystemConsole.AddMessage(null, MessageType.Info, "System", $"Remaining durability: {durability - damage} / {durability}");
+            return true;
         }
     }
 }

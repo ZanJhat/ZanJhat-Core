@@ -1,0 +1,20 @@
+{
+  "ModSettings": {
+    "ZanJhat.Core": {
+      "Anchor": {
+        "TopLeft": "Top Left",
+        "TopCenter": "Top Center",
+        "TopRight": "Top Right",
+        "LeftCenter": "Left Center",
+        "Center": "Center",
+        "RightCenter": "Right Center",
+        "BottomLeft": "Bottom Left",
+        "BottomCenter": "Bottom Center",
+        "BottomRight": "Bottom Right"
+      }
+    }
+  },
+  "CameraManage": {
+    "ZanJhat.Core.ShoulderCamera": "Shoulder camera"
+  }
+}

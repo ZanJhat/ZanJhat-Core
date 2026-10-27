@@ -1,6 +1,6 @@
 <Screen xmlns="runtime-namespace:Game" xmlns:zc="runtime-namespace:ZanJhat.Core">
 
-    <zc:TechHudBackgroundWidget />
+    <zc:TechHUDBackgroundWidget />
 
     <StackPanelWidget Direction="Horizontal">
 

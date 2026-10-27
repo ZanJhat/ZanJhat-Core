@@ -7,7 +7,7 @@ using Game;
 
 namespace ZanJhat.Core
 {
-    public class DamageItemContext
+    public class ItemBreakContext
     {
         public Block Block;
         public int Value;

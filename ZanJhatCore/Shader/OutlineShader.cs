@@ -1,5 +1,7 @@
 ﻿using Engine;
 using Engine.Graphics;
+using System;
+using Game;
 
 namespace ZanJhat.Core
 {
@@ -14,7 +16,9 @@ namespace ZanJhat.Core
         public ShaderParameter m_samplerParameter;
         public ShaderParameter m_useTextureParameter;
 
-        public OutlineShader(string vsh, string psh) : base(vsh, psh)
+        public OutlineShader() : base(
+            ContentManager.Get<string>("Shaders/OutlineShader", ".vsh"),
+                ContentManager.Get<string>("Shaders/OutlineShader", ".psh"))
         {
             m_worldViewProjectionMatrixParameter = GetParameter("u_worldViewProjectionMatrix", true);
             m_outlineColorParameter = GetParameter("u_outlineColor", true);

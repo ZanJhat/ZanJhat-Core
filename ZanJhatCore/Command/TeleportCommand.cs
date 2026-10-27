@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Engine;
 using Game;
 
@@ -42,7 +42,7 @@ namespace ZanJhat.Core
             new CmdArgument("pitch", CmdArgType.Float, true)
         };
 
-        protected override void ExecuteCore(SubsystemConsole subsystemConsole, ComponentConsole executor, object[] args)
+        protected override bool ExecuteCore(SubsystemConsole subsystemConsole, ComponentConsole executor, object[] args)
         {
             ComponentBody componentBody = executor.Entity.FindComponent<ComponentBody>();
             ComponentLocomotion componentLocomotion = executor.Entity.FindComponent<ComponentLocomotion>();
@@ -50,7 +50,7 @@ namespace ZanJhat.Core
             if (componentBody == null)
             {
                 subsystemConsole.AddMessage(null, MessageType.Error, "System", "ComponentBody is null");
-                return;
+                return false;
             }
 
             float x = (float)args[0];
@@ -75,6 +75,7 @@ namespace ZanJhat.Core
             }
 
             subsystemConsole.AddMessage(null, MessageType.Info, "System", $"Teleported to: {x:0.##}, {y:0.##}, {z:0.##}");
+            return true;
         }
     }
 }

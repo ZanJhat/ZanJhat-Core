@@ -18,15 +18,15 @@ namespace ZanJhat.Core
 {
     public static class PathManager
     {
+        // Root
         public static readonly string RootDirectory = Path.Combine(ModsManager.DocPath, "ZanJhat");
 
         // Directory
-        public static readonly string SettingsDirectory = Path.Combine(RootDirectory, "Settings");
         public static readonly string ExportDirectory = Path.Combine(RootDirectory, "Export");
         public static readonly string LogsDirectory = Path.Combine(RootDirectory, "Logs");
         public static readonly string CinematicDirectory = Path.Combine(RootDirectory, "CinematicRecords");
 
         // File
-        public static readonly string SettingsFile = Path.Combine(SettingsDirectory, "Settings.xml");
+        //public static readonly string SettingsFile = Path.Combine(SettingsDirectory, "Settings.xml");
     }
 }

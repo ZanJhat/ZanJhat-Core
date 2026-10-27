@@ -1,4 +1,4 @@
-﻿using Engine;
+using Engine;
 using Engine.Graphics;
 using Engine.Media;
 using Engine.Serialization;
@@ -79,6 +79,7 @@ namespace ZanJhat.Core
                 Time = DateTime.Now
             };
 
+            // Gọi Event trước khi thêm nếu có
             if (MessageAdding != null)
             {
                 // Cho phép các mod khác kiểm duyệt hoặc đổi nội dung (ref entry)
@@ -90,7 +91,7 @@ namespace ZanJhat.Core
             }
 
             m_logs.Add(entry);
-            MessageAdded?.Invoke(entry);
+            MessageAdded?.Invoke(entry); // Gọi Event sau khi tin nhắn được thêm
 
             if (m_logs.Count > MaxLogs)
                 m_logs.RemoveAt(0);
@@ -119,6 +120,7 @@ namespace ZanJhat.Core
 
             Func<ComponentConsole, string, string[], bool> handlers = CommandExecuting;
 
+            // Gọi Event trước khi thực thi nếu có
             if (handlers != null)
             {
                 foreach (Func<ComponentConsole, string, string[], bool> handler in handlers.GetInvocationList())
@@ -134,8 +136,11 @@ namespace ZanJhat.Core
                 return true;
             }
 
-            command.Execute(this, executor, rawArgs);
-            CommandExecuted?.Invoke(executor, cmdName, rawArgs, true); // Báo cáo lệnh thành công
+            bool result = command.Execute(this, executor, rawArgs);
+            CommandExecuted?.Invoke(executor, cmdName, rawArgs, result); // Gọi Event cho biết đã thực thi
+
+            /*if (!result)
+                AddMessage(null, MessageType.Error, "System", $"Fail to excuted command: {commandText}");*/
 
             return true;
         }

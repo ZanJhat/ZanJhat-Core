@@ -5,27 +5,27 @@ using Game;
 
 namespace ZanJhat.Core
 {
-    public class TechHudBackgroundWidget : Widget
+    public class TechHUDBackgroundWidget : Widget
     {
         public Vector2 m_position;
-        public TechHudBackgroundRenderer2D TechHudBackgroundRenderer2D = new();
+        public TechHUDBackgroundRenderer2D TechHUDBackgroundRenderer2D = new();
         public RenderTarget2D m_defaultRT = new RenderTarget2D(1920, 1080, 1, ColorFormat.Rgba8888, DepthFormat.Depth24Stencil8);
 
         private float m_scannerStartTime = 0f;
         private Vector2 m_scannerPos = Vector2.Zero;
         private float m_prevDt;
 
-        public TechHudBackgroundWidget()
+        public TechHUDBackgroundWidget()
         {
-            TechHudBackgroundBatch2D techHudBackgroundBatch2D = TechHudBackgroundRenderer2D.FlatBatch(1);
+            TechHUDBackgroundBatch2D techHUDBackgroundBatch2D = TechHUDBackgroundRenderer2D.FlatBatch(1);
             Vector2 zero = Vector2.Zero;
             Vector2 corner = new Vector2(m_defaultRT.Width, m_defaultRT.Height);
-            techHudBackgroundBatch2D.QueueQuad(zero, corner, 0f, Color.Transparent);
-            techHudBackgroundBatch2D.TransformLines(base.GlobalTransform, techHudBackgroundBatch2D.TriangleVertices.Count);
-            techHudBackgroundBatch2D.TransformTriangles(base.GlobalTransform, techHudBackgroundBatch2D.TriangleVertices.Count);
+            techHUDBackgroundBatch2D.QueueQuad(zero, corner, 0f, Color.Transparent);
+            techHUDBackgroundBatch2D.TransformLines(base.GlobalTransform, techHUDBackgroundBatch2D.TriangleVertices.Count);
+            techHUDBackgroundBatch2D.TransformTriangles(base.GlobalTransform, techHUDBackgroundBatch2D.TriangleVertices.Count);
             RenderTarget2D renderTarget = Display.RenderTarget;
             Display.RenderTarget = m_defaultRT;
-            techHudBackgroundBatch2D.Flush();
+            techHUDBackgroundBatch2D.Flush();
             Display.RenderTarget = renderTarget;
         }
 
@@ -42,13 +42,13 @@ namespace ZanJhat.Core
 
         public void DrawImage(DrawContext dc)
         {
-            TechHudBackgroundBatch2D techHudBackgroundBatch2D = TechHudBackgroundRenderer2D.FlatBatch(1);
+            TechHUDBackgroundBatch2D techHUDBackgroundBatch2D = TechHUDBackgroundRenderer2D.FlatBatch(1);
             Vector2 zero2 = Vector2.Zero;
             Vector2 corner = base.GlobalBounds.Size();
-            techHudBackgroundBatch2D.QueueQuad(zero2, corner, 0f, Color.Transparent);
-            techHudBackgroundBatch2D.TransformLines(base.GlobalTransform, techHudBackgroundBatch2D.TriangleVertices.Count);
-            techHudBackgroundBatch2D.TransformTriangles(base.GlobalTransform, techHudBackgroundBatch2D.TriangleVertices.Count);
-            techHudBackgroundBatch2D.Flush();
+            techHUDBackgroundBatch2D.QueueQuad(zero2, corner, 0f, Color.Transparent);
+            techHUDBackgroundBatch2D.TransformLines(base.GlobalTransform, techHUDBackgroundBatch2D.TriangleVertices.Count);
+            techHUDBackgroundBatch2D.TransformTriangles(base.GlobalTransform, techHUDBackgroundBatch2D.TriangleVertices.Count);
+            techHUDBackgroundBatch2D.Flush();
         }
 
         // ---------- HỆ THỐNG VẼ UI CHI TIẾT (BLOOMED) ----------

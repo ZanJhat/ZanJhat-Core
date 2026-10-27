@@ -11,6 +11,7 @@ namespace ZanJhat.Core
         public float Distance = 1.25f;
         public float Height = 1.75f;
         public float AimOffset = 0.35f;
+        public bool SmoothMovement = false;
 
         public override bool UsesMovementControls => false;
         public override bool IsEntityControlEnabled => true;
@@ -42,10 +43,17 @@ namespace ZanJhat.Core
 
             Vector3 desiredPosition = matrix.Translation + v;
 
-            if (Vector3.Distance(desiredPosition, m_position) < 10f)
+            if (SmoothMovement)
             {
-                Vector3 delta = desiredPosition - m_position;
-                m_position += 3f * dt * delta;
+                if (Vector3.Distance(desiredPosition, m_position) < 10f)
+                {
+                    Vector3 delta = desiredPosition - m_position;
+                    m_position += 3f * dt * delta;
+                }
+                else
+                {
+                    m_position = desiredPosition;
+                }
             }
             else
             {

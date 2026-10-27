@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <AssemblyName>ZanJhatCore</AssemblyName>
-    <RootNamespace>ZanJhat.Core</RootNamespace>
+    <RootNamespace>ZanJhatCore</RootNamespace>
     <Nullable>disable</Nullable>
     <ImplicitUsings>disable</ImplicitUsings>
     <Version>3.0.0</Version>

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Collections.Generic;
 using Engine;
@@ -18,7 +18,7 @@ namespace ZanJhat.Core
             Register(new DevModeCommand());
             Register(new TeleportCommand());
             Register(new ExportCommand());
-            Register(new CinematicRecordCommand());
+            // Register(new CinematicRecordCommand());
         }
 
         public static IEnumerable<Command> GetAll()

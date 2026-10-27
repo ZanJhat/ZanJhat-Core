@@ -6,7 +6,7 @@ using Game;
 
 namespace ZanJhat.Core
 {
-    public class TechHudBackgroundShader : Shader
+    public class TechHUDBackgroundShader : Shader
     {
         public ShaderParameter m_worldViewProjectionMatrixParameter;
 
@@ -27,10 +27,10 @@ namespace ZanJhat.Core
 
         }
 
-        public TechHudBackgroundShader()
+        public TechHUDBackgroundShader()
             : base(
-                ShaderCodeManager.GetFast("Shaders/TechHudBackground.vsh"),
-                ShaderCodeManager.GetFast("Shaders/TechHudBackground.psh"))
+                ShaderCodeManager.GetFast("Shaders/TechHUDBackground.vsh"),
+                ShaderCodeManager.GetFast("Shaders/TechHUDBackground.psh"))
         {
             m_worldViewProjectionMatrixParameter = GetParameter("u_worldViewProjectionMatrix", allowNull: true);
             m_renderSize = GetParameter("u_renderSize", allowNull: true);
@@ -45,9 +45,9 @@ namespace ZanJhat.Core
         }
     }
 
-    public class TechHudBackgroundBatch2D : FlatBatch2D
+    public class TechHUDBackgroundBatch2D : FlatBatch2D
     {
-        public static TechHudBackgroundShader Shader = new();
+        public static TechHUDBackgroundShader Shader = new();
 
         public new void Flush(bool clearAfterFlush = true)
         {
@@ -68,7 +68,7 @@ namespace ZanJhat.Core
         }
     }
 
-    public class TechHudBackgroundRenderer2D : BasePrimitivesRenderer<TechHudBackgroundBatch2D, TexturedBatch2D, FontBatch2D>
+    public class TechHUDBackgroundRenderer2D : BasePrimitivesRenderer<TechHUDBackgroundBatch2D, TexturedBatch2D, FontBatch2D>
     {
         public static Matrix ViewportMatrix()
         {
@@ -78,7 +78,7 @@ namespace ZanJhat.Core
             return new Matrix(2f * num, 0f, 0f, 0f, 0f, -2f * num2, 0f, 0f, 0f, 0f, 1f, 0f, -1f, 1f, 0f, 1f);
         }
 
-        public TechHudBackgroundBatch2D FlatBatch(int layer = 0, DepthStencilState depthStencilState = null, RasterizerState rasterizerState = null, BlendState blendState = null)
+        public TechHUDBackgroundBatch2D FlatBatch(int layer = 0, DepthStencilState depthStencilState = null, RasterizerState rasterizerState = null, BlendState blendState = null)
         {
             depthStencilState = depthStencilState ?? DepthStencilState.None;
             rasterizerState = rasterizerState ?? RasterizerState.CullNoneScissor;

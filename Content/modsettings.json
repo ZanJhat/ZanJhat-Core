@@ -1,0 +1,110 @@
+[
+  {
+    "Id": "GeneralSettings",
+    "Name": "General",
+    "Title": "General Settings",
+    "Items": [
+      {
+        "Text": "--- Graphics ---"
+      },
+      {
+        "Id": "Firefly",
+        "Name": "Firefly",
+        "Description": "Enable fireflies to spawn naturally when conditions are met.",
+        "Type": "bool",
+        "Default": false
+      },
+      {
+        "Id": "ProjectileTrail",
+        "Name": "Projectile Trail",
+        "Description": "Enable white trails behind projectiles.",
+        "Type": "bool",
+        "Default": false
+      },
+      {
+        "Text": "--- Controls ---"
+      },
+      {
+        "Id": "DoubleTapDash",
+        "Name": "Double Tap Dash",
+        "Description": "Double-tap the movement control to dash.",
+        "Type": "bool",
+        "Default": true
+      },
+      {
+        "Text": "--- Audio ---"
+      },
+      {
+        "Id": "BreakSound",
+        "Name": "Break Sound",
+        "Description": "Plays a sound when an item breaks.",
+        "Type": "bool",
+        "Default": true
+      }
+    ]
+  },
+  {
+    "Id": "EffectSettings",
+    "Name": "Effect",
+    "Title": "Effect Settings",
+    "Items": [
+      {
+        "Id": "ShowHUD",
+        "Name": "Show HUD",
+        "Description": "Shows all active status effects with their icons, remaining time, and detailed information when selected.",
+        "Type": "bool",
+        "Default": true
+      },
+      {
+        "Id": "Anchor",
+        "Name": "Anchor",
+        "Description": "Sets the anchor position of the HUD on the screen.",
+        "Type": "ZanJhat.Core.Anchor",
+        "Default": "TopLeft"
+      },
+      {
+        "Id": "MarginX",
+        "Name": "Margin X",
+        "Description": "Adjusts the horizontal offset from the selected anchor position.",
+        "Type": "float",
+        "Default": 72,
+        "WidgetProperties": {
+          "MinValue": -256,
+          "MaxValue": 256,
+          "Granularity": 1
+        }
+      },
+      {
+        "Id": "MarginY",
+        "Name": "Margin Y",
+        "Description": "Adjusts the vertical offset from the selected anchor position.",
+        "Type": "float",
+        "Default": 11,
+        "WidgetProperties": {
+          "MinValue": -256,
+          "MaxValue": 256,
+          "Granularity": 1
+        }
+      },
+      {
+        "Id": "LayoutDirection",
+        "Name": "Layout Direction",
+        "Description": "Controls the direction in which the status effect icons are arranged.",
+        "Type": "LayoutDirection",
+        "Default": "Horizontal"
+      },
+      {
+        "Id": "Scale",
+        "Name": "Scale",
+        "Description": "Adjusts the size of the status effect icons.",
+        "Type": "float",
+        "Default": 0.9,
+        "WidgetProperties": {
+          "MinValue": 0.5,
+          "MaxValue": 1.5,
+          "Granularity": 0.1
+        }
+      }
+    ]
+  }
+]

@@ -13,7 +13,6 @@ using System.IO;
 using System.Text;
 using XmlUtilities;
 using Game;
-using ZanJhat.Core;
 
 namespace ZanJhat.Core
 {
@@ -211,7 +210,7 @@ namespace ZanJhat.Core
             UpdateProgress(currentTime);
 
             if (m_effectsWidget != null)
-                m_effectsWidget.IsVisible = m_effectSettings.Enable;
+                m_effectsWidget.IsVisible = m_effectSettings.ShowHUD;
 
             /*if (m_subsystemTime.PeriodicGameTimeEvent(5.0, 0.0))
             {
@@ -405,9 +404,7 @@ namespace ZanJhat.Core
             m_componentCreatureModel = Entity.FindComponent<ComponentCreatureModel>();
             m_componentModel = Entity.FindComponent<ComponentModel>();
 
-            m_outlineShader = new OutlineShader(
-                ContentManager.Get<string>("Shaders/OutlineShader", ".vsh"),
-                ContentManager.Get<string>("Shaders/OutlineShader", ".psh"));
+            m_outlineShader = new OutlineShader();
 
             m_effectSettings = CoreSettingsManager.EffectSettings;
             m_lastScale = m_effectSettings.Scale;

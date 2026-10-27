@@ -1,4 +1,4 @@
-﻿using Engine;
+using Engine;
 using Engine.Graphics;
 using Engine.Media;
 using Engine.Serialization;
@@ -16,17 +16,6 @@ using Game;
 
 namespace ZanJhat.Core
 {
-    public class ExportCommand : Command
-    {
-        public override string Name => "export";
-        public override string Usage => "/export <blocks>";
-
-        public ExportCommand()
-        {
-            Register(new ExportBlocksCommand());
-        }
-    }
-
     public class ExportBlocksCommand : Command
     {
         public override string Name => "blocks";
@@ -38,7 +27,7 @@ namespace ZanJhat.Core
             new CmdArgument("includeMods", CmdArgType.Bool)
         };
 
-        protected override void ExecuteCore(SubsystemConsole subsystemConsole, ComponentConsole executor, object[] args)
+        protected override bool ExecuteCore(SubsystemConsole subsystemConsole, ComponentConsole executor, object[] args)
         {
             string filePath = Path.Combine(PathManager.ExportDirectory, "BlocksList.txt");
             bool skipInvalid = (bool)args[0];
@@ -47,9 +36,15 @@ namespace ZanJhat.Core
             Result<bool> result = GameDataExporter.ExportBlocks(filePath, skipInvalid, includeMods);
 
             if (result.Success)
+            {
                 subsystemConsole.AddMessage(null, MessageType.Info, "System", $"Blocks exported: {filePath}");
+                return true;
+            }
             else
+            {
                 subsystemConsole.AddMessage(null, MessageType.Error, "System", $"Blocks export failed: {result.Error}");
+            return false;
+            }
         }
     }
 }
